@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Learn With Me</title>
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
   <style>
     :root {
-      --primary-blue: #1ABC9C; /* Teal for accent */
-      --secondary-color: #E67E22; /* Coral for accent */
-      --dark-bg: #2C3E50;
+      --primary-blue: #1ABC9C;
+      --secondary-color: #E67E22;
       --light-gray: #ecf0f1;
       --text-dark: #34495e;
       --text-light: #ecf0f1;
@@ -60,30 +62,18 @@
       margin: 0 auto;
       padding: 20px;
     }
-    .teacher-section {
-      text-align: center;
-      margin: 40px 0;
+    .teacher-img {
+      max-width: 120px;
+      max-height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--primary-blue);
+      box-shadow: var(--box-shadow);
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }
-.teacher-img {
-  width: auto;
-  height: auto;
-  max-width: 120px;
-  max-height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 5px solid var(--primary-blue);
-  box-shadow: var(--box-shadow);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
     .teacher-img:hover {
       transform: scale(1.05);
-    }
-    .teacher-welcome {
-      font-size: 1.1em;
-      color: var(--primary-blue);
-      margin-top: 15px;
-      font-weight: 600;
     }
     .modal {
       display: none;
@@ -132,7 +122,6 @@
       display: inline-block;
       padding-bottom: 10px;
     }
-    /* Cards Grid */
     .content-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -227,9 +216,6 @@
       header h1 {
         font-size: 1.8em;
       }
-      header p {
-        font-size: 0.9em;
-      }
       .content-grid {
         grid-template-columns: 1fr;
       }
@@ -237,8 +223,8 @@
         font-size: 1.8em;
       }
       .teacher-img {
-        width: 120px;
-        height: 120px;
+        max-width: 100px;
+        max-height: 100px;
       }
       .modal-content {
         width: 95%;
@@ -252,7 +238,8 @@
   <!-- HEADER -->
   <header>
     <div class="logo-title">
-      <img src="assets/images/teacher.png" alt="Teacher Avatar" class="teacher-img" id="teacherImage">
+      <!-- Now loading teacher.png from the same folder -->
+      <img src="teacher.png" alt="Teacher Avatar" class="teacher-img" id="teacherImage">
       <h1 class="site-title">Learn With Me</h1>
     </div>
     <nav>
@@ -284,7 +271,10 @@
           <h3>Grammar & Syntax Mastery</h3>
           <p>Strengthen your foundation with essential B2 grammar rules and sentence structures.</p>
           <ul>
-            <!-- Links placeholders -->
+            <!-- Add B2-specific links here -->
+            <!-- Example:
+            <li><a href="https://example.com/b2-grammar-notes" target="_blank">B2 Grammar Notes</a></li>
+            -->
           </ul>
           <div class="coming-soon"><em>(Coming Soon!)</em></div>
         </div>
@@ -302,7 +292,7 @@
           <h3>Reading Comprehension</h3>
           <p>Practice strategies to tackle B2-level texts and improve critical reading.</p>
           <ul>
-            <!-- Links placeholders -->
+            <!-- B2 reading links go here -->
           </ul>
           <div class="coming-soon"><em>(Coming Soon!)</em></div>
         </div>
@@ -321,7 +311,7 @@
           <h3>Writing</h3>
           <p>Develop effective writing skills for B2 essays, emails, and reports.</p>
           <ul>
-            <!-- Links placeholders -->
+            <!-- B2 writing links go here -->
           </ul>
           <div class="coming-soon"><em>(Coming Soon!)</em></div>
         </div>
@@ -330,7 +320,7 @@
           <h3>Listening & Speaking</h3>
           <p>Improve your listening comprehension and prepare for the B2 speaking tasks.</p>
           <ul>
-            <!-- Links placeholders -->
+            <!-- B2 listening/speaking links go here -->
           </ul>
           <div class="coming-soon"><em>(Coming Soon!)</em></div>
         </div>
@@ -470,15 +460,15 @@
     var span = document.getElementsByClassName("close-button")[0];
     img.onclick = function() {
       modal.style.display = "flex";
-    }
+    };
     span.onclick = function() {
       modal.style.display = "none";
-    }
+    };
     window.onclick = function(event) {
       if (event.target == modal) {
         modal.style.display = "none";
       }
-    }
+    };
     function closeModal() {
       modal.style.display = "none";
     }
