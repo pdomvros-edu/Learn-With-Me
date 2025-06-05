@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learn With Me</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-blue: #1ABC9C; /* Teal for accent */
+      --secondary-color: #E67E22; /* Coral for accent */
+      --dark-bg: #2C3E50;
+      --light-gray: #ecf0f1;
+      --text-dark: #34495e;
+      --text-light: #ecf0f1;
+      --card-bg: #ffffff;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--light-gray);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+    header {
+      background-color: var(--primary-blue);
+      color: var(--text-light);
+      padding: 20px;
+      text-align: center;
+    }
+    .logo-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .site-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.2em;
+      margin: 0;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      color: var(--text-light);
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .teacher-section {
+      text-align: center;
+      margin: 40px 0;
+    }
+.teacher-img {
+  width: auto;
+  height: auto;
+  max-width: 120px;
+  max-height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid var(--primary-blue);
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+    .teacher-img:hover {
+      transform: scale(1.05);
+    }
+    .teacher-welcome {
+      font-size: 1.1em;
+      color: var(--primary-blue);
+      margin-top: 15px;
+      font-weight: 600;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background-color: var(--card-bg);
+      margin: auto;
+      padding: 30px;
+      border-radius: var(--border-radius);
+      width: 80%;
+      max-width: 500px;
+      box-shadow: var(--box-shadow);
+      text-align: center;
+      position: relative;
+    }
+    .close-button {
+      color: #aaa;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close-button:hover,
+    .close-button:focus {
+      color: var(--primary-blue);
+      text-decoration: none;
+    }
+    h2.section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.2em;
+      color: var(--primary-blue);
+      text-align: center;
+      margin-bottom: 40px;
+      border-bottom: 2px solid var(--primary-blue);
+      display: inline-block;
+      padding-bottom: 10px;
+    }
+    /* Cards Grid */
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+    .category-card {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 25px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+    .category-card .icon {
+      font-size: 3em;
+      color: var(--primary-blue);
+      margin-bottom: 15px;
+    }
+    .category-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.6em;
+      color: var(--primary-blue);
+      margin-bottom: 10px;
+    }
+    .category-card p {
+      font-size: 0.95em;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    .category-card ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 15px;
+      text-align: left;
+    }
+    .category-card ul li {
+      margin-bottom: 8px;
+    }
+    .category-card ul li a {
+      text-decoration: none;
+      color: var(--secondary-color);
+      font-weight: 600;
+      transition: color 0.2s ease;
+      display: block;
+      padding: 5px 0;
+      border-bottom: 1px dotted rgba(230, 126, 34, 0.4);
+    }
+    .category-card ul li a:hover {
+      color: var(--primary-blue);
+      border-bottom-color: var(--primary-blue);
+    }
+    .coming-soon {
+      font-style: italic;
+      color: #7f8c8d;
+      font-size: 1em;
+      margin-top: auto;
+      padding-top: 15px;
+      border-top: 1px dashed #ccc;
+    }
+    .optional-section {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 30px;
+      margin-bottom: 40px;
+    }
+    .optional-section h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.8em;
+      color: var(--primary-blue);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .optional-section ul {
+      list-style: disc;
+      padding-left: 25px;
+    }
+    .optional-section p {
+      font-size: 1em;
+      margin-bottom: 15px;
+    }
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.8em;
+      }
+      header p {
+        font-size: 0.9em;
+      }
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+      h2.section-title {
+        font-size: 1.8em;
+      }
+      .teacher-img {
+        width: 120px;
+        height: 120px;
+      }
+      .modal-content {
+        width: 95%;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-title">
+      <img src="assets/images/teacher.png" alt="Teacher Avatar" class="teacher-img" id="teacherImage">
+      <h1 class="site-title">Learn With Me</h1>
+    </div>
+    <nav>
+      <a href="#b2-zone">B2 Zone</a>
+      <a href="#c2-zone">C2 Zone</a>
+      <a href="#extras">Extras</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <!-- TEACHER MODAL -->
+  <div id="welcomeModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal()">&times;</span>
+      <h3>Welcome to Learn With Me!</h3>
+      <p>I'm Panagiotis Domvros, your guide through B2 and C2 exam preparation. Explore the sections below to access comprehensive resources and tips to achieve your language goals. Good luck!</p>
+      <p>Contact: domvroshub@gmail.com</p>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- B2 ZONE -->
+    <section id="b2-zone">
+      <h2 class="section-title">Unlock Your Potential: Master the B2 Exam!</h2>
+      <div class="content-grid">
+        <div class="category-card">
+          <div class="icon">📚</div>
+          <h3>Grammar & Syntax Mastery</h3>
+          <p>Strengthen your foundation with essential B2 grammar rules and sentence structures.</p>
+          <ul>
+            <!-- Links placeholders -->
+          </ul>
+          <div class="coming-soon"><em>(Coming Soon!)</em></div>
+        </div>
+        <div class="category-card">
+          <div class="icon">🔧</div>
+          <h3>Sentence Transformations</h3>
+          <p>Hone your paraphrasing and rephrasing skills tailored for the B2 exam.</p>
+          <ul>
+            <li><a href="https://pdomvros-edu.github.io/phrase-forge-B2/" target="_blank">Phrase Forge</a></li>
+          </ul>
+          <div class="coming-soon"><em>(More to Come!)</em></div>
+        </div>
+        <div class="category-card">
+          <div class="icon">👁️</div>
+          <h3>Reading Comprehension</h3>
+          <p>Practice strategies to tackle B2-level texts and improve critical reading.</p>
+          <ul>
+            <!-- Links placeholders -->
+          </ul>
+          <div class="coming-soon"><em>(Coming Soon!)</em></div>
+        </div>
+        <div class="category-card">
+          <div class="icon">🧩</div>
+          <h3>Vocabulary & Word Formation</h3>
+          <p>Boost your lexicon with targeted B2 vocabulary exercises.</p>
+          <ul>
+            <li><a href="https://pdomvros-edu.github.io/B2-Vocab-Attack/" target="_blank">B2 Vocab Attack!</a></li>
+            <li><a href="https://pdomvros-edu.github.io/word-weaver/" target="_blank">Word Weaver</a></li>
+          </ul>
+          <div class="coming-soon"><em>(More to Come!)</em></div>
+        </div>
+        <div class="category-card">
+          <div class="icon">✍️</div>
+          <h3>Writing</h3>
+          <p>Develop effective writing skills for B2 essays, emails, and reports.</p>
+          <ul>
+            <!-- Links placeholders -->
+          </ul>
+          <div class="coming-soon"><em>(Coming Soon!)</em></div>
+        </div>
+        <div class="category-card">
+          <div class="icon">🎧</div>
+          <h3>Listening & Speaking</h3>
+          <p>Improve your listening comprehension and prepare for the B2 speaking tasks.</p>
+          <ul>
+            <!-- Links placeholders -->
+          </ul>
+          <div class="coming-soon"><em>(Coming Soon!)</em></div>
+        </div>
+      </div>
+      <section class="optional-section">
+        <h3>Why B2 Level?</h3>
+        <p>Passing the B2 exam demonstrates an upper-intermediate command of English, which can help you:</p>
+        <ul>
+          <li><strong>Academic Pathways:</strong> Qualify for English-taught undergraduate programs and scholarships.</li>
+          <li><strong>Professional Growth:</strong> Enhance your CV and open up job opportunities requiring solid English skills.</li>
+          <li><strong>Everyday Confidence:</strong> Communicate effectively in travel, social, and informal work settings.</li>
+          <li><strong>Global Mobility:</strong> Show readiness for long-term stays in English-speaking countries.</li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- C2 ZONE -->
+    <section id="c2-zone">
+      <h2 class="section-title">C2 Challenge</h2>
+      <div class="content-grid">
+        <div class="category-card">
+          <div class="icon">📚</div>
+          <h3>Grammar & Syntax Mastery</h3>
+          <p>Build a rock-solid foundation with advanced grammar rules and complex syntactic structures.</p>
+          <ul>
+            <li><a href="https://pdomvros-edu.github.io/grammar-C2-notes/" target="_blank">C2 Grammar Notes</a></li>
+            <li><a href="https://pdomvros-edu.github.io/C2-grammar-consolidation/" target="_blank">C2 Grammar Consolidation Exercises</a></li>
+            <li><a href="https://pdomvros-edu.github.io/syntax-C2-notes-/" target="_blank">C2 Syntax Notes</a></li>
+          </ul>
+        </div>
+        <div class="category-card">
+          <div class="icon">🔧</div>
+          <h3>Sentence Transformations</h3>
+          <p>Sharpen your rephrasing skills with targeted sentence transformation exercises.</p>
+          <ul>
+            <li><a href="https://pdomvros-edu.github.io/phrase-forge-1/" target="_blank">Phrase Forge 1</a></li>
+            <li><a href="https://pdomvros-edu.github.io/phrase-forge-2/" target="_blank">Phrase Forge 2</a></li>
+            <li><a href="https://pdomvros-edu.github.io/phrase-forge-3/" target="_blank">Phrase Forge 3</a></li>
+          </ul>
+        </div>
+        <div class="category-card">
+          <div class="icon">👁️</div>
+          <h3>Reading Comprehension</h3>
+          <p>Develop critical reading strategies for tackling challenging C2 level texts.</p>
+          <ul>
+            <li><a href="https://pdomvros-edu.github.io/reading-feat1/" target="_blank">Reading Feat 1</a></li>
+            <li><a href="https://pdomvros-edu.github.io/reading-feat2/" target="_blank">Reading Feat 2</a></li>
+            <li><a href="https://pdomvros-edu.github.io/reading-feat3/" target="_blank">Reading Feat 3</a></li>
+          </ul>
+        </div>
+        <div class="category-card">
+          <div class="icon">🧩</div>
+          <h3>Vocabulary & Word Formation</h3>
+          <p>Expand your lexicon and master advanced word formation for precision and accuracy.</p>
+          <ul>
+            <li><a href="https://pdomvros-edu.github.io/word-weaver2/" target="_blank">Word Weaver 2</a></li>
+            <li><a href="https://pdomvros-edu.github.io/vocab-vortex1/" target="_blank">Vocab Vortex 1</a></li>
+          </ul>
+        </div>
+        <div class="category-card">
+          <div class="icon">✍️</div>
+          <h3>Writing</h3>
+          <p>Develop sophisticated writing skills for various C2 essay and report types.</p>
+          <ul>
+            <li><a href="https://pdomvros-edu.github.io/C2-Writing-Guide/" target="_blank">C2 Proficiency Writing Guide</a></li>
+            <li><a href="https://pdomvros-edu.github.io/C2-essay-topics/" target="_blank">Sample C2 Topics</a></li>
+          </ul>
+        </div>
+        <div class="category-card">
+          <div class="icon">🎧</div>
+          <h3>Listening & Interview</h3>
+          <p>Enhance your listening comprehension and prepare for spoken interactions.</p>
+          <ul>
+            <li><a href="https://pdomvros-edu.github.io/C2-Interview/" target="_blank">Dealing with the C2 Interview</a></li>
+            <li><a href="https://pdomvros-edu.github.io/C2-Listening/" target="_blank">Practice for the Listening Part</a></li>
+          </ul>
+        </div>
+      </div>
+      <section class="optional-section">
+        <h3>Why C2 Proficiency?</h3>
+        <p>Achieving C2 Proficiency (Cambridge English: Proficiency) demonstrates an exceptional level of English mastery, equivalent to a native speaker. This qualification is widely recognized internationally and can open doors to:</p>
+        <ul>
+          <li><strong>Higher Education:</strong> Essential for postgraduate study and academic research in English-speaking countries.</li>
+          <li><strong>Career Opportunities:</strong> Highly valued by employers requiring advanced communication skills in global settings.</li>
+          <li><strong>Personal Growth:</strong> Boosts confidence in all aspects of English communication, from social interactions to professional presentations.</li>
+          <li><strong>Global Mobility:</strong> Facilitates living, working, and studying in English-speaking environments without language barriers.</li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- EXTRAS -->
+    <section id="extras">
+      <h2 class="section-title">Extras & Fun Stuff</h2>
+      <div class="content-grid">
+        <div class="category-card">
+          <div class="icon">🎙️</div>
+          <h3>Podcast Picks</h3>
+          <p>Short episodes to boost your listening.</p>
+          <ul>
+            <!-- Links can be added here -->
+          </ul>
+          <div class="coming-soon"><em>(Coming Soon!)</em></div>
+        </div>
+        <div class="category-card">
+          <div class="icon">❓</div>
+          <h3>Quick Quizzes</h3>
+          <p>Flash quizzes on idioms, phrasal verbs, etc.</p>
+          <ul>
+            <!-- Links can be added here -->
+          </ul>
+          <div class="coming-soon"><em>(Coming Soon!)</em></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT & CREDITS -->
+    <section id="about" class="container">
+      <h2 class="section-title">About “Learn With Me”</h2>
+      <p>Created by <strong>Panagiotis Domvros</strong>, English Teacher – Teacher Trainer</p>
+      <p>Principal of 1st Middle School of Pylea</p>
+      <p>(CC BY-NC 2025)</p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>Educational materials by Panagiotis Domvros. © 2025 All rights reserved.</p>
+      <p><a href="mailto:domvroshub@gmail.com" style="color: var(--text-light);">Contact Us</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Modal functionality
+    var modal = document.getElementById("welcomeModal");
+    var img = document.getElementById("teacherImage");
+    var span = document.getElementsByClassName("close-button")[0];
+    img.onclick = function() {
+      modal.style.display = "flex";
+    }
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    function closeModal() {
+      modal.style.display = "none";
+    }
+  </script>
+</body>
+</html>
